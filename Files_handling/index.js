@@ -9,7 +9,7 @@ switch (choice) {
         readAfile(process.argv[3])
         break;
     case 'write':
-        writeInFile(process.argv[3], process.argv[4])
+        writeInFile(process.argv[3], process.argv)
         break;
     case 'createDirectory':
         makeDirectory(process.argv[3])
