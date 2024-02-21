@@ -1,4 +1,3 @@
-
 const fs = require("fs");
 
 //list files of a directory
@@ -27,11 +26,13 @@ exports.readAfile =(path)=> {
 //readAfile();
 
 //write to files
-exports.writeInFile =(fileName, data)=> {
-
+exports.writeInFile =(fileName, arr)=> {
+  let text = ""
+  for (let i = 4;i < arr.length; i++) {
+    text += arr[i] + " ";
+  }
+  let mypromise = fs.promises.writeFile(fileName,text);
   
-  let mypromise = fs.promises.writeFile(fileName, data);
-
   mypromise
     .then(() => {
       console.log("Data written into the file successfully!!");
@@ -39,7 +40,6 @@ exports.writeInFile =(fileName, data)=> {
     .catch((err) => {
       console.log(err);
     });
-
 }
 //createAFile();
 
