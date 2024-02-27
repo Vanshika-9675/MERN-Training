@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const {retrieveAllTasks,createTask,retrieveSingleTask,updateTask} = require('../controllers/task.controllers');
+const {retrieveAllTasks,createTask,retrieveSingleTask,updateTask,setCompleteStatus} = require('../controllers/task.controllers');
 
 
 router.get('/tasks',retrieveAllTasks);
