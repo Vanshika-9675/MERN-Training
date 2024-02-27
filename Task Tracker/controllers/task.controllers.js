@@ -128,16 +128,24 @@ exports.createTask = (req, res) => {
         }
     }
 
-    //patch
+   //patch
     exports.setCompleteStatus = (req,res)=>{
         const taskId = parseInt(req.params.id);
         const { completedStatus } = req.body;
 
+        let data = fs.readFileSync('./data.json', 'utf8');
+
+        let jsonData = JSON.parse(data);
+
         // Find the task by ID
-        const taskIndex = tasks.findIndex(task => task.id === taskId);
+        const taskIndex = jsonData.findIndex(task => task.id === taskId);
+
+        console.log(jsonData);
 
         if (taskIndex !== -1) {
-            tasks[taskIndex].completedStatus = completedStatus;
+            // Update the completed status
+            jsonData[taskIndex].completedStatus = completedStatus;
+            fs.writeFileSync('./data.json', JSON.stringify(jsonData));
             res.status(200).json({ message: `Task ${taskId} updated successfully` });
         } else {
             res.status(404).json({ message: `Task with ID ${taskId} not found` });
