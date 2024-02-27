@@ -2,12 +2,18 @@ const fs = require('fs');
 //get all tasks
 exports.retrieveAllTasks = (req,res)=>{
     try {
-        fs.readFile('./data.json',(err,data)=>{
+        fs.readFile('./data.json','utf-8',(err,data)=>{
             if(err){
                 console.log(err);
                 res.status(500).send("Internal server error!");
             }
-            res.status(200).json(JSON.parse(data));
+            if(data==""){
+                console.log("File is empty!!");
+                res.status(500).send("File is empty!");
+            }
+            else{
+                res.status(200).json(JSON.parse(data));
+            }
         })
     } catch (error) {
         res.status(500).send("Server error!");
