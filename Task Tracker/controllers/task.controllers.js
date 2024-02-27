@@ -114,7 +114,6 @@ exports.createTask = (req, res) => {
                 return res.status(404).send('Record not found');
             }
 
-            // Update the properties of the record
             jsonData[recordIndex].title = updatedData.title;
             jsonData[recordIndex].description = updatedData.description;
             jsonData[recordIndex].completedStatus = updatedData.completedStatus;
@@ -138,7 +137,6 @@ exports.createTask = (req, res) => {
         const taskIndex = tasks.findIndex(task => task.id === taskId);
 
         if (taskIndex !== -1) {
-            // Update the completed status
             tasks[taskIndex].completedStatus = completedStatus;
             res.status(200).json({ message: `Task ${taskId} updated successfully` });
         } else {
@@ -160,7 +158,7 @@ exports.createTask = (req, res) => {
             const jsonData = JSON.parse(data);
             const filteredData = jsonData.filter(item => item.id !== id);
     
-            // Check if any data was filtered out
+ 
             if (jsonData.length === filteredData.length) {
                 return res.status(404).send('Record not found');
             }
