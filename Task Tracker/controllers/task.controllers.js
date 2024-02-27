@@ -2,7 +2,7 @@ const fs = require('fs');
 //get all tasks
 exports.retrieveAllTasks = (req,res)=>{
     try {
-        fs.readFileSync('./data.json',(err,data)=>{
+        fs.readFile('./data.json',(err,data)=>{
             if(err){
                 console.log(err);
                 res.status(500).send("Internal server error!");
@@ -16,24 +16,19 @@ exports.retrieveAllTasks = (req,res)=>{
 
 //get single task by id
 exports.retrieveSingleTask= (req,res)=>{
-    const id = req.params.id;
+    const id = parseInt(req.params.id);
     try {
-       const data = fs.readFileSync('./data.json',(err)=>{
-            if(err){
-               throw err;
-            }
-       });
-       const result = data.find(r=>r.id==id);
-       if(result)
-       {
-        res.status(200).json(JSON.parse(result));
-       }  
-       else{
-          console.log("hey");
-       }   
+        const data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+        const result = data.find(r => r.id === id);
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            console.log("Task not found");
+            res.status(404).send("Task not found");
+        }
     } catch (error) {
-        console.log(err);
-        res.status(500).send("Internal server error!")
+        console.error(error);
+        res.status(500).send("Internal server error!");
     }
 }
 
@@ -101,42 +96,37 @@ exports.createTask = (req, res) => {
     
     // Read file
     fs.readFileSync('./data.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Internal Server Error');
-        }
-        let jsonData;
+        const id = parseInt(req.params.id);
+        const updatedData = req.body;
+
         try {
+            // Read the JSON file synchronously
+            let jsonData = fs.readFileSync('./data.json', 'utf8');
+
             // Parse the JSON data
-            jsonData = JSON.parse(data);
-        } catch (parseError) {
-            console.error(parseError); 
-            return res.status(500).send('Error parsing JSON data');
-        }
+            jsonData = JSON.parse(jsonData);
 
-        // Find the index of the record with the specified ID
-        const recordIndex = jsonData.findIndex(item => item.id === id);
-        
-        // Check if the record is not found
-        if (recordIndex === -1) {
-            return res.status(404).send('Record not found');
-        }
-
-        // Update the properties of the record
-        jsonData[recordIndex].title = updatedData.title;
-        jsonData[recordIndex].description = updatedData.description;
-        jsonData[recordIndex].completedStatus = updatedData.completedStatus;
-        
-
-        // Write the updated data back to the JSON file
-        fs.writeFileSync('./data.json', JSON.stringify(jsonData), err => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send('Internal Server Error');
+            // Find the index of the record with the specified ID
+            const recordIndex = jsonData.findIndex(item => item.id === id);
+            
+            // Check if the record is not found
+            if (recordIndex === -1) {
+                return res.status(404).send('Record not found');
             }
+
+            // Update the properties of the record
+            jsonData[recordIndex].title = updatedData.title;
+            jsonData[recordIndex].description = updatedData.description;
+            jsonData[recordIndex].completedStatus = updatedData.completedStatus;
+
+            // Write the updated data back to the JSON file
+            fs.writeFileSync('./data.json', JSON.stringify(jsonData));
+
             res.send('Record updated successfully');
-        });
-    });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        }
     }
 
     //patch
@@ -158,33 +148,31 @@ exports.createTask = (req, res) => {
 
     //delte a task by id
     exports.deleteTask =(req,res)=>{
-        const id = req.params.id;
+        const id = parseInt(req.params.id);
 
-    fs.readFileSync('./data.json', 'utf8', (err, data) => {
+    fs.readFile('./data.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
-            res.status(500).send('Internal Server Error');
-            return;
+            return res.status(500).send('Internal Server Error');
         }
-        const jsonData = JSON.parse(data);
-        const filteredData = jsonData.filter(item => item.id !== id);
-
-        //checking if object with that is present or not 
-        if (jsonData.length === filteredData.length) {
-            res.status(404).send('Record not found');
-            return;
-        }
-
-        //writing updated data into the file again
-        fs.writeFileSync('./data.json', JSON.stringify(filteredData), err => {
-            if (err) {
-                console.error(err);
-                res.status(500).send('Internal Server Error');
-                return;
+    
+        try {
+            const jsonData = JSON.parse(data);
+            const filteredData = jsonData.filter(item => item.id !== id);
+    
+            // Check if any data was filtered out
+            if (jsonData.length === filteredData.length) {
+                return res.status(404).send('Record not found');
             }
-            res.send('Record deleted successfully');
-        });
-      });
-    }
-
+    
+            // Write updated data back to the file
+            fs.writeFileSync('./data.json', JSON.stringify(filteredData));
+    
+            return res.send('Record deleted successfully');
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('Internal Server Error');
+        }
+    });
+}
     
