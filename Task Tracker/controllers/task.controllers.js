@@ -122,7 +122,7 @@ exports.createTask = (req, res) => {
             jsonData = JSON.parse(jsonData);
 
             // Find the index of the record with the specified ID
-            const recordIndex = jsonData.findIndex(item => item.id === id);
+            const recordIndex = jsonData.findIndex(item => item.id == id);
             
             // Check if the record is not found
             if (recordIndex === -1) {
@@ -153,7 +153,7 @@ exports.createTask = (req, res) => {
         let jsonData = JSON.parse(data);
 
         // Find the task by ID
-        const taskIndex = jsonData.findIndex(task => task.id === taskId);
+        const taskIndex = jsonData.findIndex(task => task.id == taskId);
 
         console.log(jsonData);
 
