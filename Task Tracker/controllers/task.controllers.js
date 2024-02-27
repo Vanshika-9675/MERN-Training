@@ -7,6 +7,7 @@ exports.retrieveAllTasks = (req,res)=>{
                 console.log(err);
                 res.status(500).send("Internal server error!");
             }
+            //if file is empty
             if(data==""){
                 console.log("File is empty!!");
                 res.status(500).send("File is empty!");
