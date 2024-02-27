@@ -55,7 +55,15 @@ exports.createTask = (req, res) => {
          }
          else{
             jsonData = JSON.parse(data);
-            jsonData.push(newData);
+             //checking if task with that id is already present
+            const result = jsonData.find(d=>d.id==newData.id);
+            console.log(result);
+            if(result){
+                res.status(403).send("Task already exist!");
+            }
+            else{
+                jsonData.push(newData);
+            }
          }
        
          fs.writeFileSync('./data.json', JSON.stringify(jsonData),(err)=>{
