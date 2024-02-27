@@ -3,19 +3,19 @@
       "id": 1,
       "title": "Complete Project Report",
       "description": "Write and finalize the project report for submission.",
-      "completed": false
+      "completedStatus": false
     },
     {
       "id": 2,
       "title": "Prepare Presentation",
       "description": "Create slides and prepare the presentation for the meeting.",
-      "completed": true
+      "completedStatus": true
     },
     {
       "id": 3,
       "title": "Review Feedback",
       "description": "Review and address feedback received from the supervisor.",
-      "completed": false
+      "completedStatus": false
     }
 ]
   
