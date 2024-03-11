@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <body>
+       <div class="parent">
+        <div class="container">
+            <div class="text-center" >
+                <h1>Add a Book</h1>
+                <form id="addBookForm" method="POST" action="/book" >
+                    <label for="Id">Id:</label>
+                    <input type="text" id="id" name="id" placeholder="Enter id..." required>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" placeholder="Enter title..." required>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" placeholder="Enter author..." required>
+                    <button type="submit" class="btn add my-3" >Add Book</button>
+                </form>
+            </div>
+            <div class="books">
+                
+            </div>
+        </div>
+    </form>
+       </div>
+       
+    <script src="./library.js"></script>
+</body>
+
+</html>

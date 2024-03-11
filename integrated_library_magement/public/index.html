@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Library Management System</title>
+    <script src="https://kit.fontawesome.com/afb7c18eee.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+         <div class="form-box" >
+            <div class="btn-field">
+                <button id="signupbtn" >Sign Up</button>
+                <button id="signinbtn" >Sign In</button>
+            </div>
+            <h1 id="title">Library</h1>
+            <form id="signUpForm">
+                <div class="input_group">
+                    <div class="input_field">
+                        <i class="fa-solid fa-user"></i>
+                        <input  id="namefield" type="text" placeholder="Name">
+                    </div>
+                    <div class="input_field" >
+                        <i class="fa-solid fa-envelope"></i>
+                        <input  id="SignEmail" type="email" placeholder="Email">
+                    </div>
+                    <div class="input_field" >
+                        <i class="fa-solid fa-lock"></i>
+                        <input id="SignPass" type="password" placeholder="Password">
+                    </div>
+                </div>
+               <button class="submit submit-btn">Submit</button>
+            </form>
+            <form class="notactive" id="loginForm">
+                <div class="input_group">
+                    <div class="input_field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="input_field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password">
+                    </div>
+                </div>
+               <button class="submit submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
