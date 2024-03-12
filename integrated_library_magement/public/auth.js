@@ -44,6 +44,10 @@
                 })
                 .then(response => {
                     if (response.status==200) {
+                        window.location.href = 'library.html';
+                        document.getElementById('namefield').value="";
+                        document.getElementById('SignEmail').value="";
+                        document.getElementById('SignPass').value=""; 
                         console.log("success");
                         alert('Sign up successful!'); 
                     } else {
@@ -77,8 +81,8 @@
             .then(response => {
                 if (response.ok) {
                     window.location.href = 'library.html';
-                    document.querySelector('input[type="email"]').value ="";
-                   document.querySelector('input[type="password"]').value="";
+                   document.getElementById("email").value="";
+                    document.getElementById("password").value="";
                     alert('Log In successful!');    
                 } else {
                     alert('Log In failed. Please try again.');
