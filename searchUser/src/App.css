@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+.parent{
+   width: 100%;
+   height: 100vh;
+   background: #0F2027;  /* fallback for old browsers */
+   background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+}
+
+.card{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   background: #fbfbfb2f;
+   transform: translate(-50%,-50%);
+   border-radius: 10px;
+   padding: 20px;
+   text-align: center;
+   color: rgb(169, 166, 161);
+   border: 2px solid rgb(215, 212, 209);
+   line-height: 30px;
+}
+
+#input-field{
+   padding: 15px 120px 15px 15px;
+   outline: none;
+   border: none;
+   border-radius: 10px;
+   margin-top: -10px;
+   margin-bottom: 20px;
+}
+
+.search-btn{
+  padding: 15px;
+  border-radius: 10px;
+  margin-left: -15px;
+  outline: none;
+  border: none;
+  background-color: #4f7d8d;
+  color: wheat;
+}
+
+span{
+    color: black;
+    font-size: large;
+    font: bold;
+}
+
+.details h2{
+  color: #0F2027;
+}
