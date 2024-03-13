@@ -1,0 +1,43 @@
+.Card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: hidden;
+    max-width: 350px;
+    margin: 0 auto; /* Center the card horizontally */
+  }
+  
+  .CardHeader {
+    background-color: #42275a;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .CardHeader h3 {
+    margin: 0;
+  }
+  
+  .CardBody {
+    padding: 20px;
+  }
+  
+  .CardFooter {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .CardFooter button {
+    background-color: #42275a;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .CardFooter button:hover {
+    background-color: #42275a;
+  }
+  
